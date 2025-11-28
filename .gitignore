@@ -1,0 +1,18 @@
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Data & Weights (Too large for GitHub)
+data/
+synapse_v1_weights/
+*.pdb
+*.ent
+
+# Environment
+.env
+env/
+venv/
+synapse/
+
+# IDE settings
+.vscode/
