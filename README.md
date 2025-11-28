@@ -46,4 +46,4 @@ RDKit (Cheminformatics)
 BioPython (Structural Biology)
 
 
-Developed by Alan Jafari - Neurovix AI
+Developed by Alan Jafari - Neurovix AI# Project-Synapse
