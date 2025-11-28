@@ -3,7 +3,6 @@ from Bio.PDB import PDBList, PDBParser
 import numpy as np
 import warnings
 
-# جلوگیری از هشدارهای غیرمهم بایوپایتون
 warnings.filterwarnings('ignore')
 
 class ProteinLoader:
@@ -12,25 +11,18 @@ class ProteinLoader:
         self.parser = PDBParser()
 
     def download_and_parse(self, pdb_id, save_dir="data/pdb"):
-        """
-        این تابع یک شناسه PDB میگیرد، فایل را دانلود میکند و اطلاعات اتم‌های آن را استخراج میکند.
-        """
-        # 1. ساخت دایرکتوری اگر وجود ندارد
+        
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
         
         print(f"Downloading {pdb_id}...")
-        # دانلود فایل PDB از سرور جهانی
         file_path = self.pdbl.retrieve_pdb_file(pdb_id, pdir=save_dir, file_format="pdb")
         
-        # 2. پارس کردن ساختار
         structure = self.parser.get_structure(pdb_id, file_path)
         
-        # 3. استخراج مختصات (Coordinates)
         coords = []
         atoms_count = 0
         
-        # پیمایش مدل -> زنجیره -> رزیدیو -> اتم
         for model in structure:
             for chain in model:
                 for residue in chain:
@@ -42,11 +34,9 @@ class ProteinLoader:
         
         return coords_np, file_path
 
-# --- تست کد ---
 if __name__ == "__main__":
     loader = ProteinLoader()
     
-    # تست با یک پروتئین کوچک (1CRN: پروتئین کرامبین - کلاسیک برای تست)
     target_pdb = "1CRN"
     
     try:
@@ -57,7 +47,7 @@ if __name__ == "__main__":
         print("="*30)
         print(f"File saved at: {path}")
         print(f"Total Atoms: {atom_coords.shape[0]}")
-        print(f"Coordinate Shape: {atom_coords.shape}") # باید (N, 3) باشد
+        print(f"Coordinate Shape: {atom_coords.shape}")
         print(f"Center of Mass (Geometric): {np.mean(atom_coords, axis=0)}")
         print("="*30)
         
