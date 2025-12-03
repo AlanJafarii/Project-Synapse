@@ -1,0 +1,10 @@
+streamlit
+torch
+transformers
+rdkit
+biopython
+stmol
+py3Dmol
+pandas
+numpy
+ipython_genutils
